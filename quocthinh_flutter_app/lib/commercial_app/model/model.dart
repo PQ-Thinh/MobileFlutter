@@ -81,7 +81,13 @@ class Fruit {
     }
     static listenFruitChange(Map<int,Fruit>maps, {Function()? updateUI}){
      listenFruitChangeData(
-         maps, channel: , table: table, schema: schema, fromJson: fromJson, getID: getID)
+         channel: "Fruit:public",
+          table: "Fruit",
+          schema:"public",
+          fromJson: Fruit.fromJson,
+          getID: (t) => t.id,
+          updateUI: updateUI);
+
     }
    static List<Fruit> getALL() {
     return data;

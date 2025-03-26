@@ -39,10 +39,10 @@ return stream.map((mapList)=>mapList.map(
    required String table,
    required String schema,
    required T Function(Map <String,dynamic> json) fromJson,
-   required int Function(T t) getID,
+   required int Function(T ) getID,
    Function()? updateUI
 
-}){
+})asyn{
 
   supabase
       .channel(channel)

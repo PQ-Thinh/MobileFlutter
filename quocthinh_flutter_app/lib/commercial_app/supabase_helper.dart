@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 
@@ -7,6 +9,22 @@ Future<void> removeImages({required String bucket,required String Path})async{
       .storage
       .from(bucket)
       .remove([Path]);
+}
+Future<String> uploadImage(
+    {required File image,
+      required String bucket,
+      required String path,
+      bool upsert = false}) async {
+  await supabase.storage.from(bucket).upload(
+      path, image,
+      fileOptions:
+      FileOptions(
+          cacheControl: '3600',
+          upsert: upsert));
+
+  final String publicUrl = supabase.storage.from(bucket).getPublicUrl(path);
+
+  return publicUrl;
 }
 Stream<List<T>> getDataStream<T>({
   required String table,
@@ -39,7 +57,7 @@ return stream.map((mapList)=>mapList.map(
    required String table,
    required String schema,
    required T Function(Map <String,dynamic> json) fromJson,
-   required int Function(T t) getID,
+   required int Function(T) getID,
    Function()? updateUI
 
 }){

@@ -24,7 +24,7 @@ class PageChitietFruit extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           actions:[
             GetBuilder(
-              id:"fruits",
+              id:"gh",
               init: CotrollerFruit.get(),
               builder: (controller) => badges.Badge(
                 showBadge: controller.slGHMH>0,

@@ -41,17 +41,18 @@ class Fruit {
       var data= await supabase.from("Fruit").update(newFruit.toJson()).eq("id",fruit.id);
       return data;
     }
-    Future<void> delete()async{
+    
+   static Future<void> delete(int id)async{
       final supabase = Supabase.instance.client;
-      await supabase.from("Fruit").delete().eq("id",fruit.id);
-      await removeImages(bucket: "imagesfruits",Path: "fruit/fruit_${fruit.id}");
+      await supabase.from("Fruit").delete().eq("id",id);
+      await removeImages(bucket: "imagesfruits",Path: "fruit/fruit_${id}");
       return;
     }
-    static Future<dynamic> insert(Fruit newFruit)async{
+    static Future<dynamic> insert(Fruit newFruit) async {
       final supabase = Supabase.instance.client;
-      var data=await supabase
-          .from('Fruit')
-          .insert({newFruit.toJson()});
+
+      var data = await supabase.from('Fruit').insert(newFruit.toJson());
+
       return data;
     }
     static Stream<List<Fruit>> getFruitsStream(){
@@ -81,11 +82,17 @@ class Fruit {
     }
     static listenFruitChange(Map<int,Fruit>maps, {Function()? updateUI}){
      listenFruitChangeData(
-         maps, channel: , table: table, schema: schema, fromJson: fromJson, getID: getID)
+         maps,
+         channel: "Fruit:public",
+         table: "Fruit",
+         schema:"public",
+         fromJson: Fruit.fromJson,
+         getID: (t) => t.id,
+         updateUI: updateUI);
     }
-   static List<Fruit> getALL() {
-    return data;
-  }
+     static List<Fruit> getALL() {
+      return data;
+    }
   }
   final data =<Fruit>[
     Fruit(

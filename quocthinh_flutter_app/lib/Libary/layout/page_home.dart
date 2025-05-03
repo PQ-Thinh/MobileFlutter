@@ -3,11 +3,16 @@ import 'package:quocthinh_flutter_app/Libary/Profile/Page_profile.dart';
 import 'package:quocthinh_flutter_app/Libary/layout/ListView.dart';
 import 'package:quocthinh_flutter_app/Libary/layout/gridview_example.dart';
 import 'package:quocthinh_flutter_app/Libary/layout/page_album.dart';
+import 'package:quocthinh_flutter_app/Libary/layout/phone.dart';
 import 'package:quocthinh_flutter_app/app_state_ex/getx/getx_ex.dart';
 import 'package:quocthinh_flutter_app/app_state_ex/getx/getx_simple_state_manager.dart';
 import 'package:quocthinh_flutter_app/commercial_app/app_fruit_store.dart';
 import 'package:quocthinh_flutter_app/commercial_app/page_fruit_stream.dart';
 import 'package:quocthinh_flutter_app/main.dart';
+
+import '../../commercial_app/Page_Admin/fruit_page_admin.dart';
+import '../../local_storage/page_get_storageDemo.dart';
+import '../../permission/page_permission.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome({super.key});
@@ -33,6 +38,10 @@ class PageHome extends StatelessWidget {
              buildButton(context,title: "ALbum",destination: PageAlbum()),
              buildButton(context,title: "AppFruit",destination: AppFruitStore()),
              buildButton(context,title: "PageFruitStream",destination: PageFruitStream()),
+             buildButton(context,title: "PagePhone",destination: Pagephone()),
+             buildButton(context,title: "PagePermission",destination: PageRequestPermission()),
+             buildButton(context,title: "PageGetstorage",destination: PageGetStorage()),
+             buildButton(context,title: "FruitPageAdmin",destination: FruitPageAdmin()),
            ],
          ),
        ),

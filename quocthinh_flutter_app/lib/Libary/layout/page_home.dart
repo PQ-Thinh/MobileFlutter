@@ -11,6 +11,7 @@ import 'package:quocthinh_flutter_app/commercial_app/page_fruit_stream.dart';
 import 'package:quocthinh_flutter_app/main.dart';
 
 import '../../commercial_app/Page_Admin/fruit_page_admin.dart';
+import '../../commercial_app/page_auth-user.dart';
 import '../../local_storage/page_get_storageDemo.dart';
 import '../../permission/page_permission.dart';
 
@@ -42,6 +43,7 @@ class PageHome extends StatelessWidget {
              buildButton(context,title: "PagePermission",destination: PageRequestPermission()),
              buildButton(context,title: "PageGetstorage",destination: PageGetStorage()),
              buildButton(context,title: "FruitPageAdmin",destination: FruitPageAdmin()),
+             buildButton(context,title: "Login",destination: PageFruitStoreLogin()),
            ],
          ),
        ),

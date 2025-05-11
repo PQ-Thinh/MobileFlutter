@@ -31,6 +31,7 @@ class CotrollerFruit extends GetxController{
     gh.add(GH_Item(fruit: f, sl: 1));
     update(["gh"]);
   }
+
 }
 class BingdingAppFruitStore extends Bindings{
 

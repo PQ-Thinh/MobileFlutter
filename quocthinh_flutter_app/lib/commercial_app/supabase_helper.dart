@@ -92,3 +92,19 @@ return stream.map((mapList)=>mapList.map(
       })
       .subscribe();
 }
+Future<String> updateImage(
+    {required File image,
+      required String bucket,
+      required String path,
+      bool upsert = false}) async {
+  await supabase.storage.from(bucket).update(
+      path, image,
+      fileOptions:
+      FileOptions(
+          cacheControl: '3600',
+          upsert: upsert));
+
+  final String publicUrl = supabase.storage.from(bucket).getPublicUrl(path);
+
+  return publicUrl+ "?ts=${DateTime.now().millisecond}";
+}

@@ -36,9 +36,14 @@ class Fruit {
     Fruit fruit;
 
     FruitSnapshot(this.fruit);
-    Future<dynamic> update(Fruit newFruit)async{
+    static Future<dynamic> update(Fruit newFruit) async {
       final supabase = Supabase.instance.client;
-      var data= await supabase.from("Fruit").update(newFruit.toJson()).eq("id",fruit.id);
+      var data = await supabase
+          .from("Fruit")
+          .update(newFruit.toJson())
+          .eq("id", newFruit.id)
+          .select();
+
       return data;
     }
     

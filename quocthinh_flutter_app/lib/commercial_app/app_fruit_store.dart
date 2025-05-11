@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:quocthinh_flutter_app/commercial_app/page_auth-user.dart';
 import 'package:quocthinh_flutter_app/commercial_app/page_chitiet_fruit.dart';
+import 'package:quocthinh_flutter_app/commercial_app/supabase_helper.dart';
 
 //import 'cotroller/Cotroller_fruit.dart';
 import 'cotroller/cotroller_ver2.dart';
@@ -50,6 +52,32 @@ class  PageHomeFruitStore extends StatelessWidget {
             width: 20,
           )
         ]
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            GetBuilder<CotrollerFruit>(
+              id: "drawer_header",
+              init: CotrollerFruit.get(),
+              builder: (CotrollerFruit controller)=>
+                  UserAccountsDrawerHeader(
+                    accountName: Text("Xin chào"),
+                    accountEmail:Text("${response?.user?.email??"chưa đăng nhập"}"),
+                    currentAccountPicture: CircleAvatar(
+                      backgroundImage: AssetImage("asset/images/anhnen.jpg"),
+                    ),
+                  ),
+            ),
+            Column(
+              children: [
+                IconButton(onPressed: () async{
+                  await supabase.auth.signOut();
+                }, icon: Icon(Icons.logout)),
+                Text("Sign out")
+              ],
+            )
+          ],
+        ),
       ),
       body: GetBuilder(
         id: "fruits",

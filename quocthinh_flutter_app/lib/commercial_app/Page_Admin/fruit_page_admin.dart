@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:quocthinh_flutter_app/commercial_app/Page_Admin/fruit_add_page.dart';
+import 'package:quocthinh_flutter_app/commercial_app/Page_Admin/fruit_update_page.dart';
 import 'package:quocthinh_flutter_app/commercial_app/model/model.dart';
 import 'package:quocthinh_flutter_app/my_widget/async_widget.dart';
 import 'package:quocthinh_flutter_app/my_widget/dialogs.dart';
@@ -22,7 +23,7 @@ class FruitPageAdmin extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => PageAddFruit(),)
                 );
               }, 
-              icon: Icon(Icons.add_circle_outline, size: 30,))
+              icon: Icon(Icons.add_circle_outline, size: 30,)),
         ],
       ),
       body: StreamBuilder<List<Fruit>>(
@@ -53,13 +54,16 @@ class FruitPageAdmin extends StatelessWidget {
                                 SlidableAction(
                                   // An action can be bigger than the others.
                                   flex: 2,
-                                  onPressed: (context) {
-
+                                  onPressed: (context) async{
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context) => PageUpdateFruit(fruit: fruit),)
+                                    );
                                   },
                                   backgroundColor: Colors.blue,
                                   foregroundColor: Colors.white,
-                                  icon: Icons.edit,
+                                  icon: Icons.delete_forever,
                                   label: 'Cập nhật',
+                                  // An action can be bigger than the others.
                                 ),
                                 SlidableAction(
                                   onPressed: (context) async{

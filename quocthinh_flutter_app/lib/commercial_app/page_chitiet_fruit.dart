@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:quocthinh_flutter_app/commercial_app/model/model.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:quocthinh_flutter_app/commercial_app/page_auth-user.dart';
 
 import 'cotroller/cotroller_ver2.dart';
 //import 'cotroller/Cotroller_fruit.dart';
@@ -93,8 +94,13 @@ class PageChitietFruit extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            CotrollerFruit.get().themMHGH(fruit);
+          onPressed: () async{
+            if(response?.session!=null && response?.user!=null)
+              CotrollerFruit.get().themMHGH(fruit);
+            else{
+              await Navigator.of(context).push(MaterialPageRoute(builder: (context) =>PageFruitStoreLogin() ,));
+              CotrollerFruit.get().auth();
+            }
           },
         child: Icon(Icons.add_shopping_cart),
       ),

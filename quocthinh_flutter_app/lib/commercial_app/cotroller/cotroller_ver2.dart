@@ -35,7 +35,10 @@ class CotrollerFruit extends GetxController{
       }
     }
     gh.add(GH_Item(fruit: f, sl: 1));
-    update(["fruits"]);
+    update(["gh"]);
+  }
+  void auth(){
+    update(["drawer_header"]);
   }
 }
 class BingdingAppFruitStore extends Bindings{
@@ -45,6 +48,7 @@ class BingdingAppFruitStore extends Bindings{
     Get.lazyPut(() => CotrollerFruit(),);
   }
 }
+
 class GH_Item{
   Fruit fruit;
   int sl;

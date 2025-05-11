@@ -114,6 +114,7 @@ class _PageAddFruitState extends State<PageAddFruit> {
                                 anh:url,
                               );
                               FruitSnapshot.insert(fruit);
+
                               showSnackBar(context,
                                   message: "Đã thêm ${txtTen.text}..",
                                   seconds: 5);
